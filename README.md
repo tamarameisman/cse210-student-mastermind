@@ -35,4 +35,4 @@ root                    (project root folder)
 ## Authors
 ---
 * # TODO: Add your names and emails here
-Tamara Meisman - tamara@meisman.us
+Tamara Meisman - tamara@meisman.us  - this
