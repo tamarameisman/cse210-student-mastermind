@@ -81,6 +81,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        
         player = self._roster.get_current()
         guess = player.get_guess()
         self._board.apply(guess)

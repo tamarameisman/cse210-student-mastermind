@@ -28,10 +28,16 @@ class Board:
         
         
     def to_string(self):
-        border = "--------------------"
+        """border = "--------------------"
         return f"Player {self.last_guess.get_name()} {self.last_guess.get_number()} {self.last_guess.get_hint()}"
         count = 0
-        return f""
+        return f"" """
+
+
+        text = "\n--------------------"
+        text += (f"Player {self.last_guess.get_name()} {self.last_guess.get_number()} {self.last_guess.get_hint()}")
+        text += "\n--------------------"
+        return text
    
     def _prepare(self):
         self._secret_code = [0, 0, 0, 0]

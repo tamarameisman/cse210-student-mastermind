@@ -29,10 +29,10 @@ class Guess:
         pass
         
         
-    def to_string(self):
+    '''def to_string(self):
         border = "--------------------"
         count = 0
-        return f""
+        return f"" '''
    
     def _prepare(self):
         pass
