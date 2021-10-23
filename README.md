@@ -36,3 +36,5 @@ root                    (project root folder)
 ---
 * # TODO: Add your names and emails here
 Tamara Meisman - tamara@meisman.us  - this
+Brian Lewis - 1808ub@gmail.com
+Federico Pregnolato - pre13009@byui.edu

@@ -10,8 +10,9 @@ class Board:
         
     """
     
-    def __init__(self):
+    def __init__(self, length):
         self._secret_code = []
+
         self._prepare()
         self.last_guess = ""
         print(self._secret_code)        
@@ -31,6 +32,7 @@ class Board:
                     status[num] = 'o'
         player.set_status(status)
         # print(status)
+
         
     def is_answered(self):
         # compare the last guess as string against the secret code (converted from a numbered list to a string)
@@ -49,15 +51,17 @@ class Board:
         Returns:
             string: A representation of the current board.
         """
+
         text = "\n--------------------"
         for player in roster.players:
             text += (f"\nPlayer {player.get_name()}: {player.get_guess().get_number()}, ")
             for x in player.get_status():
                 text += x
         text += "\n--------------------\n"
+
         return text
    
-    def _prepare(self):
+    def _prepare(self, length):
         """ 
         Prepares the board with the secret code
         Args:
@@ -68,10 +72,13 @@ class Board:
             The code is a randomly generated, four digit number between 1000 and 9999.
 
         """
-        self._secret_code = [0, 0, 0, 0]
-        self._secret_code[0] = (random.randint(1,9))        #why do we have 1-9, instead of 0-9 as the rest??
-        self._secret_code[1] = (random.randint(0,9))
-        self._secret_code[2] = (random.randint(0,9))
-        self._secret_code[3] = (random.randint(0,9))
-    
+
+        
+        for i in range(length):
+            if i == 0:
+                self._secret_code.append(random.randint(1,9))
+            else:
+                self._secret_code.append(random.randint(0,9))
+            
+
     
