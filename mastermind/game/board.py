@@ -9,10 +9,11 @@ class Board:
         
     """
     
-    def __init__(self):
+    def __init__(self, length):
         self._secret_code = []
-        self._prepare()
         self.last_guess = 0
+        self._length = length
+        self._prepare(self._length)
         print(self._secret_code)
 
 
@@ -47,7 +48,7 @@ class Board:
         text += "\n--------------------"
         return text
    
-    def _prepare(self):
+    def _prepare(self, length):
         """ 
         Prepares the board with the secret code
         Args:
@@ -58,11 +59,11 @@ class Board:
             The code is a randomly generated, four digit number between 1000 and 9999.
 
         """
-        self._secret_code = [0, 0, 0, 0]
-        for i in range(len(self._secret_code)):
+        
+        for i in range(length):
             if i == 0:
-                self._secret_code[i] = (random.randint(1,9))
+                self._secret_code.append(random.randint(1,9))
             else:
-                self._secret_code[i] = (random.randint(0,9))
+                self._secret_code.append(random.randint(0,9))
             
     

@@ -23,7 +23,7 @@ class Console:
         """
         return input(prompt)
 
-    def read_number(self, prompt):
+    def read_number(self, prompt, length):
         """Gets numerical input from the user through the screen.
 
         Args: 
@@ -33,7 +33,13 @@ class Console:
         Returns:
             integer: The user's input as an integer.
         """
-        return int(input(prompt))
+        
+        user_input = int(input(prompt))
+        if len(str(user_input)) < length or len(str(user_input)) > length:
+            print("Please enter a valid length.")
+            user_input = int(input(prompt))
+        else:
+            return user_input
         
     def write(self, text):
         """Displays the given text on the screen. 

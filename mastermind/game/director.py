@@ -26,11 +26,11 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self._board = Board()
         self._console = Console()
         self._keep_playing = True
         self._guess = None
         self._roster = Roster()
+        self._length = 0
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -39,6 +39,7 @@ class Director:
             self (Director): an instance of Director.
         """
         self._prepare_game()
+        self._board = Board(self._length)
         while self._keep_playing:
             self._get_inputs()
             self._do_updates()
@@ -50,12 +51,12 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        self._length = int(self._console.read('Enter the lenght of the secret code: '))
         for n in range(2):
             name = self._console.read(f"Enter a name for player {n + 1}: ")
             player = Player(name)
             self._roster.add_player(player)
             first_guess = Guess(name, "----")
-            self._board.apply(first_guess)
     
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play. In this case,
@@ -70,7 +71,7 @@ class Director:
         # get next player's guess
         player = self._roster.get_current()
         self._console.write(f"{player.get_name()}'s turn:")
-        player_number = self._console.read_number("What is your guess? ")
+        player_number = self._console.read_number("What is your guess? ", self._length)
         guess = Guess(player.get_name(), player_number)
         player.set_guess(guess)
 
