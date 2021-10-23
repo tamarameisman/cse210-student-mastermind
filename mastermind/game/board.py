@@ -22,7 +22,6 @@ class Board:
         self.last_guess = str(player.get_guess().get_number()) #do guess
         status = player.get_status()
         # print(status)
-        # for x in range(4):
         for num in range(self._length):
             if self.last_guess[num] == str(self._secret_code[num]):
                 status[num] = 'x'
@@ -54,7 +53,7 @@ class Board:
 
         text = "\n--------------------"
         for player in roster.players:
-            text += (f"\nPlayer {player.get_name()}: {player.get_guess().get_number()}, ")
+            text += (f"\nPlayer {player.get_name()}: {player.get_guess()}, ")
             for x in player.get_status():
                 text += x
         text += "\n--------------------\n"

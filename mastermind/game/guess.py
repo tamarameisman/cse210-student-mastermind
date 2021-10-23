@@ -27,10 +27,8 @@ class Guess:
         """
         Description here
         """
-
         text = ''
-
         for i in range(self._number):
             text += '-'
-        
+
         return text

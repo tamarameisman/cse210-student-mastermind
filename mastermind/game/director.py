@@ -54,10 +54,9 @@ class Director:
         self._length = int(self._console.read('Enter the lenght of the secret code: '))
         for n in range(2):
             name = self._console.read(f"Enter a name for player {n + 1}: ")  
-
-            guess = Guess(self._length)
-            
-            player = Player(name, guess)
+            guess = Guess(self._length)            
+            dashes = guess.create_dashes()
+            player = Player(name, dashes)
             self._roster.add_player(player)
 
     
@@ -105,5 +104,12 @@ class Director:
             self._keep_playing = False
         self._roster.next_player()
 
-     
+    def create_dashes(self, num):
+        """
+        Description here
+        """
+        text = ''
+        for i in range(num):
+            text += '-'        
+        return text 
        
