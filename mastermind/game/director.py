@@ -71,8 +71,7 @@ class Director:
         self._console.write(board)
         # get next player's guess
         player = self._roster.get_current()
-        self._console.write(f"{player.get_name()}'s turn:")
-        
+        self._console.write(f"{player.get_name()}'s turn:")        
         player_number = self._console.read_number("What is your guess? ", self._length)
         guess = Guess(player_number)
         player.set_guess(guess)        

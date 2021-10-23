@@ -33,13 +33,19 @@ class Console:
         Returns:
             integer: The user's input as an integer.
         """
-        
-        user_input = int(input(prompt))
-        if len(str(user_input)) < length or len(str(user_input)) > length:
-            print("Please enter a valid length.")
-            user_input = int(input(prompt))
-        else:
-            return user_input
+        user_input = 0
+        while user_input == 0:
+            test_numeric = False
+            user_input =''
+            while test_numeric == False or len(user_input) != length:
+                user_input = input(prompt)
+                test_numeric = user_input.isnumeric()
+                if test_numeric == False or len(user_input) != length:
+                    print(f"Please enter a number of {length} length long.")
+
+            test_numeric = int(user_input)
+
+            return test_numeric
         
     def write(self, text):
         """Displays the given text on the screen. 

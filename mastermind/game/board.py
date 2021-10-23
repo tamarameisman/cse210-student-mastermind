@@ -19,7 +19,6 @@ class Board:
         self._length = length
         self._prepare()
         self.last_guess = ""   
-        print(self._secret_code)   
 
 
     def apply(self, player):
@@ -31,15 +30,18 @@ class Board:
             player (Player): the current player
         """
         self.last_guess = str(player.get_guess().get_number()) #do guess
-        status = player.get_status()
-        player.original_status()
+        status = player.original_status()
+        
         for num in range(self._length):
             if self.last_guess[num] == str(self._secret_code[num]):
                 status[num] = 'x'
-            elif status[num] == '*':
+            else:    #elif status[num] == '*':
                 result = self.last_guess.find(str(self._secret_code[num]))
                 if result != -1:
                     status[num] = 'o'
+                else:
+                    status[num] = '*'
+
         player.set_status(status)
 
         

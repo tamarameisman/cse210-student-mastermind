@@ -89,4 +89,4 @@ class Player:
             self (Player): an instance of Player
 
         """
-        self.set_status(self._original_status)
+        return self._original_status
