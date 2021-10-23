@@ -17,7 +17,7 @@ class Board:
 
 
     def apply(self, guess):
-        self.last_guess = guess#do guess
+        self.last_guess = guess #do guess
         
         
     def is_answered(self):
@@ -42,7 +42,7 @@ class Board:
         Returns:
             string: A representation of the current board.
         """
-        text = "\n--------------------"
+        text = "\n--------------------\n"
         text += (f"Player {self.last_guess.get_name()} {self.last_guess.get_number()} {self.last_guess.get_hint()}")
         text += "\n--------------------"
         return text
@@ -59,8 +59,10 @@ class Board:
 
         """
         self._secret_code = [0, 0, 0, 0]
-        self._secret_code[0] = (random.randint(1,9))
-        self._secret_code[1] = (random.randint(0,9))
-        self._secret_code[2] = (random.randint(0,9))
-        self._secret_code[3] = (random.randint(0,9))
+        for i in range(len(self._secret_code)):
+            if i == 0:
+                self._secret_code[i] = (random.randint(1,9))
+            else:
+                self._secret_code[i] = (random.randint(0,9))
+            
     
