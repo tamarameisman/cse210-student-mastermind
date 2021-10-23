@@ -13,10 +13,10 @@ class Director:
         Controller
 
     Attributes:
-        board (Hunter): An instance of the class of objects known as Board.
+        board: An instance of the class of objects known as Board.
         console (Console): An instance of the class of objects known as Console.
         keep_playing (boolean): Whether or not the game can continue.
-        guess (Rabbit): An instance of the class of objects known as guess.
+        guess: An instance of the class of objects known as guess.
         roster (Roster): An instance of the class of objects known as Roster.
     """
 
@@ -54,8 +54,8 @@ class Director:
             name = self._console.read(f"Enter a name for player {n + 1}: ")
             player = Player(name)
             self._roster.add_player(player)
-            first_guess = Guess(name, "----")
-            self._board.apply(first_guess)
+            #first_guess = Guess(name, "")
+            #self._board.apply(first_guess)
     
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play. In this case,

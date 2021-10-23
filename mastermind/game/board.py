@@ -41,9 +41,12 @@ class Board:
 
         Returns:
             string: A representation of the current board.
+        
         """
+        if self.last_guess == 0:
+            return ""
         text = "\n--------------------"
-        text += (f"Player {self.last_guess.get_name()} {self.last_guess.get_number()} {self.last_guess.get_hint()}")
+        text += (f"Player {self.last_guess.get_name()} {self.last_guess.get_number()} {self.last_guess.get_hint(self._secret_code)}")
         text += "\n--------------------"
         return text
    
