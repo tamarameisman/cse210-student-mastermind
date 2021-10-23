@@ -17,7 +17,9 @@ class Player:
         """
         self._name = name
         self._guess = guess
-        self._status = ["*","*","*","*"]
+        self._length = self._guess.get_number()
+        self._status = self.create_asterisks()
+        self._original_status = self.create_asterisks()
         
     def get_guess(self):
         """Returns the player's last guess (an instance of guess). If the player 
@@ -67,3 +69,24 @@ class Player:
             guess (guess): an instance of guess
         """
         self._status = status
+
+    def create_asterisks(self):
+        """ Create the list of asterisks to give the hint
+        
+            Args:
+                self (Player): an instance of player
+        """
+        list_ast = [] 
+        for i in range(self._length):
+            list_ast.append('*')
+
+        return list_ast
+    
+    def original_status(self):
+        """ Return the hint to the original status
+        
+        Args:
+            self (Player): an instance of Player
+
+        """
+        self.set_status(self._original_status)

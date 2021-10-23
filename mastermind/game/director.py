@@ -51,12 +51,11 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self._length = int(self._console.read('Enter the lenght of the secret code: '))
+        self._length = int(self._console.read('Enter the lenght of the secret code (2-9): '))
         for n in range(2):
             name = self._console.read(f"Enter a name for player {n + 1}: ")  
             guess = Guess(self._length)            
-            dashes = guess.create_dashes()
-            player = Player(name, dashes)
+            player = Player(name, guess)
             self._roster.add_player(player)
 
     
@@ -73,7 +72,7 @@ class Director:
         # get next player's guess
         player = self._roster.get_current()
         self._console.write(f"{player.get_name()}'s turn:")
-
+        
         player_number = self._console.read_number("What is your guess? ", self._length)
         guess = Guess(player_number)
         player.set_guess(guess)        
@@ -89,6 +88,7 @@ class Director:
         player = self._roster.get_current()
         # guess = player.get_guess()
         self._board.apply(player)
+        
  
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -103,13 +103,3 @@ class Director:
             print(f"\n{name} won!")
             self._keep_playing = False
         self._roster.next_player()
-
-    def create_dashes(self, num):
-        """
-        Description here
-        """
-        text = ''
-        for i in range(num):
-            text += '-'        
-        return text 
-       

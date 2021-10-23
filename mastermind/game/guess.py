@@ -25,7 +25,10 @@ class Guess:
     
     def create_dashes(self):
         """
-        Description here
+        Create dashes for the beginning of the game
+
+        Args:
+            self (Guess): an instance of the Guess
         """
         text = ''
         for i in range(self._number):
