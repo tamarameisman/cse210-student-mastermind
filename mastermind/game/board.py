@@ -13,19 +13,20 @@ class Board:
     def __init__(self):
         self._secret_code = []
         self._prepare()
+        self.last_guess = ""
         print(self._secret_code)        
 
 
     def apply(self, player):
-        last_guess = str(player.get_guess().get_number()) #do guess
+        self.last_guess = str(player.get_guess().get_number()) #do guess
         status = player.get_status()
         # print(status)
         # for x in range(4):
         for num in range(4):
-            if status[num] != 'x' and last_guess[num] == str(self._secret_code[num]):
+            if self.last_guess[num] == str(self._secret_code[num]):
                 status[num] = 'x'
             elif status[num] == '*':
-                result = last_guess.find(str(self._secret_code[num]))
+                result = self.last_guess.find(str(self._secret_code[num]))
                 if result != -1:
                     status[num] = 'o'
         player.set_status(status)
@@ -33,7 +34,8 @@ class Board:
         
     def is_answered(self):
         # compare the last guess as string against the secret code (converted from a numbered list to a string)
-        if str(self.last_guess.get_number()) == "".join(str(num) for num in self._secret_code):
+        # if str(self.last_guess.get_number()) == "".join(str(num) for num in self._secret_code):
+        if self.last_guess == "".join(str(num) for num in self._secret_code):
             return True
         return False
         
@@ -49,7 +51,7 @@ class Board:
         """
         text = "\n--------------------"
         for player in roster.players:
-            text += (f"\nPlayer {player.get_name()}: {player.get_guess()}, ")
+            text += (f"\nPlayer {player.get_name()}: {player.get_guess().get_number()}, ")
             for x in player.get_status():
                 text += x
         text += "\n--------------------\n"

@@ -6,7 +6,7 @@ class Roster:
 
     Attributes:
         _current (integer): The index of the current player.
-        _players (list): A list of Player objects.
+        players (list): A list of Player objects.
     """
     def __init__(self):
         """The class constructor.
@@ -44,4 +44,4 @@ class Roster:
         Args:
             self (Roster): An instance of Roster.
         """
-        self.current = (self.current + 1) % len(self._players)
+        self.current = (self.current + 1) % len(self.players)
