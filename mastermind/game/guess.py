@@ -1,6 +1,3 @@
-import random
-
-
 class Guess:
     """The responsibility of Board is to keep track of the pieces in play.
 
@@ -9,31 +6,18 @@ class Guess:
         
     """
     
-    def __init__(self, name, number):
-        self._prepare()
-        self._name = name
+    def __init__(self, number):
+        """The class constructor.
+        
+        Args:
+            self (Board): an instance of Board.
+        """
         self._number = number
-        self._hint = ""
-
-    def get_name(self):
-        return self._name
 
     def get_number(self):
+        """Returns the number to remove from.
+
+        Args:
+            self (Guess): an instance of Guess.
+        """
         return self._number
-
-    def get_hint(self):
-        return self._hint
-
-    
-    def is_empty(self):
-        pass
-        
-        
-    '''def to_string(self):
-        border = "--------------------"
-        count = 0
-        return f"" '''
-   
-    def _prepare(self):
-        pass
-    

@@ -1,3 +1,4 @@
+from math import log
 import random
 
 
@@ -11,30 +12,37 @@ class Board:
     
     def __init__(self, length):
         self._secret_code = []
-        self.last_guess = 0
-        self._length = length
-        self._prepare(self._length)
-        print(self._secret_code)
+
+        self._prepare()
+        self.last_guess = ""
+        print(self._secret_code)        
 
 
-    def apply(self, guess):
-        self.last_guess = guess #do guess
-        
+    def apply(self, player):
+        self.last_guess = str(player.get_guess().get_number()) #do guess
+        status = player.get_status()
+        # print(status)
+        # for x in range(4):
+        for num in range(4):
+            if self.last_guess[num] == str(self._secret_code[num]):
+                status[num] = 'x'
+            elif status[num] == '*':
+                result = self.last_guess.find(str(self._secret_code[num]))
+                if result != -1:
+                    status[num] = 'o'
+        player.set_status(status)
+        # print(status)
+
         
     def is_answered(self):
         # compare the last guess as string against the secret code (converted from a numbered list to a string)
-        if str(self.last_guess.get_number()) == "".join(str(num) for num in self._secret_code):
+        # if str(self.last_guess.get_number()) == "".join(str(num) for num in self._secret_code):
+        if self.last_guess == "".join(str(num) for num in self._secret_code):
             return True
         return False
         
         
-    def to_string(self):
-        """border = "--------------------"
-        return f"Player {self.last_guess.get_name()} {self.last_guess.get_number()} {self.last_guess.get_hint()}"
-        count = 0
-        return f"" """
-
-
+    def to_string(self, roster):        
         """Converts the board data to its string representation.
 
         Args:
@@ -43,9 +51,14 @@ class Board:
         Returns:
             string: A representation of the current board.
         """
-        text = "\n--------------------\n"
-        text += (f"Player {self.last_guess.get_name()} {self.last_guess.get_number()} {self.last_guess.get_hint()}")
-        text += "\n--------------------"
+
+        text = "\n--------------------"
+        for player in roster.players:
+            text += (f"\nPlayer {player.get_name()}: {player.get_guess().get_number()}, ")
+            for x in player.get_status():
+                text += x
+        text += "\n--------------------\n"
+
         return text
    
     def _prepare(self, length):
@@ -59,6 +72,7 @@ class Board:
             The code is a randomly generated, four digit number between 1000 and 9999.
 
         """
+
         
         for i in range(length):
             if i == 0:
@@ -66,4 +80,5 @@ class Board:
             else:
                 self._secret_code.append(random.randint(0,9))
             
+
     
