@@ -44,4 +44,4 @@ class Roster:
         Args:
             self (Roster): An instance of Roster.
         """
-        self.current = (self.current + 1) % len(self.players)
+        self.current = (self.current + 1) % len(self._players)

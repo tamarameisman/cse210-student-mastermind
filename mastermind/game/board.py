@@ -1,3 +1,4 @@
+from math import log
 import random
 
 
@@ -12,13 +13,23 @@ class Board:
     def __init__(self):
         self._secret_code = []
         self._prepare()
-        self.last_guess = 0
-        print(self._secret_code)
+        print(self._secret_code)        
 
 
-    def apply(self, guess):
-        self.last_guess = guess#do guess
-        
+    def apply(self, player):
+        last_guess = str(player.get_guess().get_number()) #do guess
+        status = player.get_status()
+        # print(status)
+        # for x in range(4):
+        for num in range(4):
+            if status[num] != 'x' and last_guess[num] == str(self._secret_code[num]):
+                status[num] = 'x'
+            elif status[num] == '*':
+                result = last_guess.find(str(self._secret_code[num]))
+                if result != -1:
+                    status[num] = 'o'
+        player.set_status(status)
+        # print(status)
         
     def is_answered(self):
         # compare the last guess as string against the secret code (converted from a numbered list to a string)
@@ -27,13 +38,7 @@ class Board:
         return False
         
         
-    def to_string(self):
-        """border = "--------------------"
-        return f"Player {self.last_guess.get_name()} {self.last_guess.get_number()} {self.last_guess.get_hint()}"
-        count = 0
-        return f"" """
-
-
+    def to_string(self, roster):        
         """Converts the board data to its string representation.
 
         Args:
@@ -43,8 +48,11 @@ class Board:
             string: A representation of the current board.
         """
         text = "\n--------------------"
-        text += (f"Player {self.last_guess.get_name()} {self.last_guess.get_number()} {self.last_guess.get_hint()}")
-        text += "\n--------------------"
+        for player in roster.players:
+            text += (f"\nPlayer {player.get_name()}: {player.get_guess()}, ")
+            for x in player.get_status():
+                text += x
+        text += "\n--------------------\n"
         return text
    
     def _prepare(self):
@@ -59,8 +67,9 @@ class Board:
 
         """
         self._secret_code = [0, 0, 0, 0]
-        self._secret_code[0] = (random.randint(1,9))
+        self._secret_code[0] = (random.randint(1,9))        #why do we have 1-9, instead of 0-9 as the rest??
         self._secret_code[1] = (random.randint(0,9))
         self._secret_code[2] = (random.randint(0,9))
         self._secret_code[3] = (random.randint(0,9))
+    
     

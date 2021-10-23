@@ -42,7 +42,7 @@ class Director:
         while self._keep_playing:
             self._get_inputs()
             self._do_updates()
-            self._do_outputs()
+            # self._do_outputs()
 
     def _prepare_game(self):
         """Prepares the game before it begins. In this case, that means getting the player names and adding them to the roster.
@@ -51,11 +51,9 @@ class Director:
             self (Director): An instance of Director.
         """
         for n in range(2):
-            name = self._console.read(f"Enter a name for player {n + 1}: ")
+            name = self._console.read(f"Enter a name for player {n + 1}: ")     
             player = Player(name)
             self._roster.add_player(player)
-            first_guess = Guess(name, "----")
-            self._board.apply(first_guess)
     
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play. In this case,
@@ -65,14 +63,14 @@ class Director:
             self (Director): An instance of Director.
         """
         # display the game board
-        board = self._board.to_string()
+        board = self._board.to_string(self._roster)
         self._console.write(board)
         # get next player's guess
         player = self._roster.get_current()
         self._console.write(f"{player.get_name()}'s turn:")
         player_number = self._console.read_number("What is your guess? ")
-        guess = Guess(player.get_name(), player_number)
-        player.set_guess(guess)
+        guess = Guess(player_number)
+        player.set_guess(guess)        
 
     def _do_updates(self):
         """Updates the important game information for each round of play. In 
@@ -81,10 +79,9 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        
         player = self._roster.get_current()
-        guess = player.get_guess()
-        self._board.apply(guess)
+        # guess = player.get_guess()
+        self._board.apply(player)
  
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 

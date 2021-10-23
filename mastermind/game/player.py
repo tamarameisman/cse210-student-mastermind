@@ -8,6 +8,7 @@ class Player:
         _name (string): The player's name.
         _guess (guess): The player's last guess.
     """
+    
     def __init__(self, name):
         """The class constructor.
         
@@ -15,7 +16,8 @@ class Player:
             self (Player): an instance of Player.
         """
         self._name = name
-        self._guess = None
+        self._guess = "----"
+        self._status = ["*","*","*","*"]
         
     def get_guess(self):
         """Returns the player's last guess (an instance of guess). If the player 
@@ -34,11 +36,34 @@ class Player:
         """
         return self._name
 
+    def get_status(self):
+        """Returns the player's game status.
+
+        Args:
+            self (Player): an instance of Player.
+        """
+        return self._status
+
     def set_guess(self, guess):
         """Sets the player's last guess to the given instance of guess.
 
         Args:
-            self (Player): an instance of Player.
             guess (guess): an instance of guess
         """
         self._guess = guess
+        
+    def set_name(self, name):
+        """Returns the player's name.
+
+        Args:
+            self (Player): an instance of Player.
+        """
+        self._name = name
+
+    def set_status(self, status):
+        """Sets the player's last guess to the given instance of guess.
+
+        Args:
+            guess (guess): an instance of guess
+        """
+        self._status = status
