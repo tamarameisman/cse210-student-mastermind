@@ -53,8 +53,10 @@ class Director:
         """
         self._length = int(self._console.read('Enter the lenght of the secret code: '))
         for n in range(2):
-            name = self._console.read(f"Enter a name for player {n + 1}: ")     
-            guess = Guess("----")
+            name = self._console.read(f"Enter a name for player {n + 1}: ")  
+
+            guess = Guess(self._length)
+            
             player = Player(name, guess)
             self._roster.add_player(player)
 
@@ -73,7 +75,7 @@ class Director:
         player = self._roster.get_current()
         self._console.write(f"{player.get_name()}'s turn:")
 
-        player_number = self._console.read_number("What is your guess? ")
+        player_number = self._console.read_number("What is your guess? ", self._length)
         guess = Guess(player_number)
         player.set_guess(guess)        
 

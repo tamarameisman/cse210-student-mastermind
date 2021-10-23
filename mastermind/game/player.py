@@ -9,14 +9,14 @@ class Player:
         _guess (guess): The player's last guess.
     """
     
-    def __init__(self, name, guest):
+    def __init__(self, name, guess):
         """The class constructor.
         
         Args:
             self (Player): an instance of Player.
         """
         self._name = name
-        self._guess = guest
+        self._guess = guess
         self._status = ["*","*","*","*"]
         
     def get_guess(self):

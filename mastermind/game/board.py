@@ -12,7 +12,7 @@ class Board:
     
     def __init__(self, length):
         self._secret_code = []
-
+        self._length = length
         self._prepare()
         self.last_guess = ""
         print(self._secret_code)        
@@ -23,7 +23,7 @@ class Board:
         status = player.get_status()
         # print(status)
         # for x in range(4):
-        for num in range(4):
+        for num in range(self._length):
             if self.last_guess[num] == str(self._secret_code[num]):
                 status[num] = 'x'
             elif status[num] == '*':
@@ -61,7 +61,7 @@ class Board:
 
         return text
    
-    def _prepare(self, length):
+    def _prepare(self):
         """ 
         Prepares the board with the secret code
         Args:
@@ -74,7 +74,7 @@ class Board:
         """
 
         
-        for i in range(length):
+        for i in range(self._length):
             if i == 0:
                 self._secret_code.append(random.randint(1,9))
             else:

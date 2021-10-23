@@ -12,6 +12,7 @@ class Guess:
         Args:
             self (Board): an instance of Board.
         """
+        
         self._number = number
 
     def get_number(self):
@@ -21,3 +22,15 @@ class Guess:
             self (Guess): an instance of Guess.
         """
         return self._number
+    
+    def create_dashes(self):
+        """
+        Description here
+        """
+
+        text = ''
+
+        for i in range(self._number):
+            text += '-'
+        
+        return text
